@@ -1,20 +1,56 @@
 import {Request, Response, NextFunction} from 'express';
+import fetchData from '../../lib/fetchData';
 
 const commentPost = async (
+  req: Request<{}, {}, {greeting: string}>,
+  res: Response<{replies: string}>,
+  next: NextFunction
+) => {
+  try {
+    const TemResponse = `Thank you for your greeting: "${req.body.greeting}". This is a reply from AI!`;
+    res.status(300).json({replies: TemResponse});
+  } catch (error) {
+    next(error);
+  }
+}
+
+/*const commentPost = async (
   req: Request<{}, {}, {text: string}>,
   res: Response<{response: string}>,
   next: NextFunction
 ) => {
   try {
-    try {
-      // TODO: Generate a response to a Youtube comment
-      // Instead of using openai library, use fetchData to make a post request to the server.
-      // see https://platform.openai.com/docs/api-reference/chat/create for more information
-      // You don't need an API key if you put the URL provided in Oma to .env.sample and Metropolia VPN
-      // Example: instad of https://api.openai.com/v1/chat/completions use process.env.OPENAI_API_URL + '/v1/chat/completions'
-    } catch (error) {
+    // TEMPORARY: Return mock response until we get the correct OpenAI URL
+    const mockResponse = `Thank you for your comment: "${req.body.text}". This is a generated response from AI!`;
+    res.status(200).json({response: mockResponse});
+
+    
+    
+    // TODO: Uncomment this when you have the correct OPENAI_API_URL
+    /*
+    const response = await fetchData(process.env.OPENAI_API_URL + '/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'user',
+            content: req.body.text,
+          },
+        ],
+      }),
+    });
+    
+    const aiResponse = (response as any).choices[0].message.content;
+    res.status(200).json({response: aiResponse});
+    
+  } catch (error) {
     next(error);
   }
 };
+*/
 
 export {commentPost};

@@ -5,6 +5,6 @@ import {commentPost} from '../controllers/commentController';
 
 const router = express.Router();
 
-router.route('/').post(body('text').notEmpty().escape(), validate, commentPost);
+router.route('/').post(body('greeting').notEmpty().escape(), validate, commentPost);
 
 export default router;
