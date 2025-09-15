@@ -1,0 +1,205 @@
+{
+  "info": {
+    "name": "AI Comment Generator",
+    "description": "Assignment 1: AI Comment Generator API - Generate automatic responses to YouTube comments with different personality styles",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Test Base API",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": ["{{baseUrl}}"],
+          "path": [""]
+        },
+        "description": "Test if the API is running"
+      }
+    },
+    {
+      "name": "Nice Response",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"comment\": \"This video is terrible!\",\n  \"style\": \"nice\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/comments",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "comments"]
+        },
+        "description": "Generate a nice response to a negative comment"
+      }
+    },
+    {
+      "name": "Funny Response",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"comment\": \"First comment!\",\n  \"style\": \"funny\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/comments",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "comments"]
+        },
+        "description": "Generate a funny response to a typical YouTube comment"
+      }
+    },
+    {
+      "name": "Mean Response",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"comment\": \"I love this video so much!\",\n  \"style\": \"mean\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/comments",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "comments"]
+        },
+        "description": "Generate a mean response to a positive comment"
+      }
+    },
+    {
+      "name": "Sarcastic Response",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"comment\": \"This is the best tutorial ever!\",\n  \"style\": \"sarcastic\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/comments",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "comments"]
+        },
+        "description": "Generate a sarcastic response"
+      }
+    },
+    {
+      "name": "Professional Response",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"comment\": \"Could you explain the algorithm in more detail?\",\n  \"style\": \"professional\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/comments",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "comments"]
+        },
+        "description": "Generate a professional response to a technical question"
+      }
+    },
+    {
+      "name": "Casual Response",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"comment\": \"Thanks for the tutorial!\",\n  \"style\": \"casual\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/comments",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "comments"]
+        },
+        "description": "Generate a casual response to a thank you"
+      }
+    },
+    {
+      "name": "Default Style (No Style Specified)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"comment\": \"This video changed my life!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/comments",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "comments"]
+        },
+        "description": "Test default style when no style is specified (should use 'casual')"
+      }
+    },
+    {
+      "name": "Invalid Request (Missing Comment)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"style\": \"funny\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/comments",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "comments"]
+        },
+        "description": "Test validation - should return error when comment is missing"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001",
+      "type": "string"
+    }
+  ]
+}
