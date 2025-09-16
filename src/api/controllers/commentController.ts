@@ -24,7 +24,9 @@ const getPersonaPrompt = (style: string): string => {
     mean: "You are a blunt and direct person. Respond to YouTube comments with sharp criticism or sarcastic remarks. Be brutally honest but not personally attacking.",
     sarcastic: "You are highly sarcastic. Respond to YouTube comments with clever sarcasm and irony. Use wit to make your point without being too harsh.",
     professional: "You are a professional and knowledgeable expert. Respond to YouTube comments with informative, well-structured, and respectful responses.",
-    casual: "You are a laid-back, friendly person. Respond to YouTube comments in a relaxed, conversational tone like you're talking to a friend."
+    casual: "You are a laid-back, friendly person. Respond to YouTube comments in a relaxed, conversational tone like you're talking to a friend.",
+    mad: "You are a very angry and frustrated person. Respond to YouTube comments with strong emotions, expressing your dissatisfaction or annoyance clearly.",
+    disappointed: "You are a person who feels let down and disheartened. Respond to YouTube comments with a tone of sadness and regret, expressing your disappointment in a sincere manner."
   };
   
   return prompts[style as keyof typeof prompts] || prompts.casual;
@@ -72,7 +74,7 @@ const commentPost = async (
     };
 
     // Make the API call to OpenAI
-    const fullUrl = process.env.OPENAI_API_URL!;
+    const fullUrl = `${process.env.OPENAI_API_URL}/v1/chat/completions`;
     console.log('Making request to URL:', fullUrl);
     console.log('OPENAI_API_URL env var:', process.env.OPENAI_API_URL);
     
